@@ -136,6 +136,9 @@ export class StompClient {
             headers.set('host', 'localhost');
             // headers.set('accept-version', Stomp.supportedVersions);
             // headers.set('heart-beat', [this.heartbeat.outgoing, this.heartbeat.incoming].join(','));
+            if (config && config.headers) {
+              config.headers.forEach((v, k) => headers.set(k, v));
+            }
 
             this.transmit(StompCommand.CONNECT, headers);
         };
